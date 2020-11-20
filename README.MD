@@ -49,6 +49,7 @@ Para tanto, algumas soluções podem ser adotadas:
 
 #### Limitações
 A solução com ClamAV tem algumas limitações, como, por exemplo, o upload de um zip-bomb famoso, o '42.zip'. ClamAV **não  foi capaz** de identificar o código malicioso:
+
 Requisição: __curl -i -X POST -F file=@42.zip http://localhost:8082/upload__
 Resposta: 
 HTTP/1.1 200 
