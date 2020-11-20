@@ -4,7 +4,7 @@
 Este é um projeto da disciplina Segurança e Auditoria de Sistemas - 2020/1 do Instituto de Informática da Universidade Federal de Goiás. 
 
 ### Objetivo
-Detalhar principais tipos de vulnerabilidades em sistemas backend no que tange a upload de arquivos e implementar um sistema backend utilizando SpringBoot e ClamAV, a fim de preveni-lo contra os principais ataques.
+Detalhar principais ataques a sistemas backend no que tange a upload de arquivos e implementar um sistema utilizando SpringBoot e ClamAV, a fim de reforçar sua segurança.
 
 ### Um pouco sobre os principais ataques
 Abaixo, seguem os principais tipos de ataque que podem ocorrer durante upload de um arquivo a um server backend.
