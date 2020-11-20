@@ -45,3 +45,20 @@ Para tanto, algumas soluções podem ser adotadas:
 - Java 11
 - Maven
 
+### Resultados
+
+#### Limitações
+A solução com ClamAV tem algumas limitações, como, por exemplo, o upload de um zip-bomb famoso, o '42.zip'. ClamAV **não  foi capaz** de identificar o código malicioso:
+Requisição: __curl -i -X POST -F file=@42.zip http://localhost:8082/upload__
+Resposta: 
+HTTP/1.1 200 
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Fri, 20 Nov 2020 21:40:18 GMT
+
+**{"message":"OK"}**
+
+
