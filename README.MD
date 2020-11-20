@@ -26,7 +26,7 @@ Para tanto, algumas soluções podem ser adotadas:
 - Se necessário, utilizar um serviço de proteção contra DDoS.
 
 #### Upload de arquivos maliciosos
-Vários tipos de arquivos maliciosos podem ser embutidos nos mais diversos formatos. Quando esses arquivos podem ser compartilhados entre vários usuários ou fluxos, a situação fica ainda pior.
+Códigos maliciosos podem ser embutidos nos arquivos dos mais diversos formatos. Quando esses arquivos podem ser compartilhados entre vários usuários ou fluxos, a situação fica ainda pior.
 No formato PDF, atacantes podem disfarçar códigos em JavaScript nos objetos do arquivo. Desta forma, ao ser aberto no leitor, pode desempenhar as mais diversas ações, como envio de form’s, ataques ao navegador de internet, etc.
 No formato zip, é possível criar arquivos que fazem uso do ataque ‘zip-bomb’, por exemplo, de modo que  ao serem extraídos podem expandir para tamanhos maiores que o sistema suporta (ordem de terabytes a petabytes).
 
