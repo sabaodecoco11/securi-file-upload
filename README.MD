@@ -47,6 +47,27 @@ Para tanto, algumas soluções podem ser adotadas:
 
 ### Resultados
 
+Utilizando o arquivo txt eicar.txt, com o seguinte conteúdo [veja mais](https://www.eicar.org/?page_id=3950):
+
+X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
+
+E a requisição:
+
+curl -i -X POST -F file=@eicar.txt http://localhost:8082/upload
+
+É obitda a seguinte resposta:
+
+HTTP/1.1 409 
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Fri, 20 Nov 2020 22:12:29 GMT
+
+**{"message":"Falha ao enviar arquivo..."} **
+
+
 #### Limitações
 A solução com ClamAV tem algumas limitações, como, por exemplo, o upload de um zip-bomb famoso, o '42.zip'. ClamAV **não  foi capaz** de identificar o código malicioso:
 
