@@ -54,7 +54,7 @@ X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
 
 E a requisição:
 
-curl -i -X POST -F file=@eicar.txt http://localhost:8082/upload
+**curl -i -X POST -F file=@eicar.txt http://localhost:8082/upload**
 
 É obitda a seguinte resposta:
 
