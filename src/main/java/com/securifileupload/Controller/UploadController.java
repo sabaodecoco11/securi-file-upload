@@ -19,6 +19,6 @@ public class UploadController {
     @CrossOrigin(origins = "http://localhost:8082")
     public Response uploadFile(@RequestParam MultipartFile file) throws MaliciousContentException {
         uploadService.sanitize(file);
-        return new Response();
+        return new Response("OK");
     }
 }
