@@ -45,6 +45,9 @@ Para tanto, algumas soluções podem ser adotadas:
 - Java 11
 - Maven
 
+### Passo a passo para build
+
+
 ### Resultados
 
 #### Arquivo malicioso
@@ -100,4 +103,8 @@ Date: Fri, 20 Nov 2020 21:40:18 GMT
 
 **{"message":"OK"}**
 
+### Referências
+- [Snooping](https://docs.oracle.com/cd/E19957-01/805-7695/ispsecurity-40/index.html)
+- [Ataques em sessões de upload de arquivo](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
+- [Java e ClamAV](https://medium.com/faun/part1-virus-detection-service-using-clamav-and-java-48212a2e5af9)
 
