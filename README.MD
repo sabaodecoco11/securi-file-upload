@@ -47,6 +47,7 @@ Para tanto, algumas soluções podem ser adotadas:
 
 ### Resultados
 
+#### Arquivo malicioso
 Utilizando o arquivo txt eicar.txt, com o seguinte conteúdo [veja mais](https://www.eicar.org/?page_id=3950):
 
 X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
@@ -66,6 +67,22 @@ Transfer-Encoding: chunked
 Date: Fri, 20 Nov 2020 22:12:29 GMT
 
 **{"message":"Falha ao enviar arquivo..."}**
+
+#### Arquivo com extensão incompatível
+
+Com a requisição __curl -i -X POST -F file=@teste.pdf.txt http://localhost:8082/upload__, é obtido o seguinte resultado:
+
+HTTP/1.1 100 
+
+HTTP/1.1 409 
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Fri, 20 Nov 2020 22:20:26 GMT
+
+**{"message":"Arquivo com formato inválido..."}**
 
 
 #### Limitações
