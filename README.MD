@@ -38,3 +38,10 @@ Para tanto, algumas soluções podem ser adotadas:
 - Implementar verificador de código malicioso (sanitizer).
 - Adotar whitelist de tipos de arquivos suportados (ou blacklist, para os não suportados) e verificar se o tipo do arquivo é de legítimo (não houve renomeação de um formato de arquivo .exe para .txt, por exemplo).
 - Manter o sistema atualizado.
+
+### Requisitos
+
+- ClamAV
+- Java 11
+- Maven
+
