@@ -3,17 +3,20 @@
 ### Sobre
 Este é um projeto da disciplina Segurança e Auditoria de Sistemas - 2020/1 do Instituto de Informática da Universidade Federal de Goiás. 
 
-### Objetivo
-Detalhar principais vulnerabilidades de sistemas backend no que tange a upload de arquivos e implementar um sistema utilizando SpringBoot e ClamAV.
+### Introdução
+Discutir principais cenários de ataque a sistemas backend no que tange a upload de arquivos. 
 
-### Um pouco sobre os principais ataques e vulnerabilidades
-Abaixo, seguem os principais incidentes de segurança que podem ocorrer durante upload de um arquivo a um server backend.
+### Metodologia
+Demonstração didática de sistema backend protegido contra upload de arquivos grandes e upload de alguns arquivos maliciosos, utilizando SpringBoot e ClamAV.
 
-#### Escutas de rede: ataque do tipo snooping
-Em uma sessão de transmissão de arquivo, é possível efetuar um ataque do tipo snooping para escutar os dados dos ‘chunks’ do arquivo, a fim de obter dados importantes.
+### Tipos de ataque
 
-Solução de prevenção:
-- A sessão e os protocolos de transferência na rede devem ser seguros, com encriptação confiável.
+### Alguns ataques a sessões de upload de arquivo
+Existem muitos ataques que podem ser efetudos a sessões de upload de arquivo. Abaixo, segue um levantamento com alguns incidentes de segurança que podem ocorrer durante upload de um arquivo a um server backend.
+
+[LISTA COM ATAQUES]
+
+### Avaliação de cenários
 
 #### Upload de arquivos grandes: desperdício de recursos e ataque contra disponibilidade
 Envio de arquivos grandes pode acarretar em falta de armazenamento. Além disso, se aliado a uma rede de bots, pode aumentar significativamente o risco de ter o serviço negado. 
@@ -47,13 +50,13 @@ Para tanto, algumas soluções podem ser adotadas:
 
 ### Passo a passo para build
 
+- docker run -d --net=host -p 3310:3310 mkodockx/docker-clamav
+- mvn spring-boot:run
 
-### Resultados
+### Demonstração
 
 #### Arquivo malicioso
-Utilizando o arquivo txt eicar.txt, com o seguinte conteúdo [veja mais](https://www.eicar.org/?page_id=3950):
-
-X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
+Utilizando o arquivo txt eicar.txt [obtenha neste link](https://www.eicar.org/?page_id=3950), com o seguinte conteúdo 
 
 E a requisição:
 
