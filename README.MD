@@ -9,9 +9,7 @@ Discutir principais cenários de ataque a sistemas backend no que tange a upload
 ### Metodologia
 Demonstração didática de sistema backend protegido contra upload de arquivos grandes e upload de alguns arquivos maliciosos, utilizando SpringBoot e ClamAV.
 
-### Tipos de ataque
-
-### Alguns ataques a sessões de upload de arquivo
+### Alguns tipos de ataque a sessões de upload de arquivo
 Existem muitos ataques que podem ser efetudos a sessões de upload de arquivo. Abaixo, segue um levantamento com alguns incidentes de segurança que podem ocorrer durante upload de um arquivo a um server backend.
 
 [LISTA COM ATAQUES]
@@ -44,9 +42,9 @@ Para tanto, algumas soluções podem ser adotadas:
 
 ### Requisitos
 
-- ClamAV
-- Java 11
-- Maven
+- [ClamAV (Docker image)](https://hub.docker.com/r/mkodockx/docker-clamav/)
+- [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- [Maven](https://maven.apache.org/download.cgi)
 
 ### Passo a passo para build
 
