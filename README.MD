@@ -4,15 +4,15 @@
 Este é um projeto da disciplina Segurança e Auditoria de Sistemas - 2020/1 do Instituto de Informática da Universidade Federal de Goiás. 
 
 ### Objetivo
-Detalhar principais ataques a sistemas backend no que tange a upload de arquivos e implementar um sistema utilizando SpringBoot e ClamAV, a fim de reforçar sua segurança.
+Detalhar principais vulnerabilidades de sistemas backend no que tange a upload de arquivos e implementar um sistema utilizando SpringBoot e ClamAV.
 
-### Um pouco sobre os principais ataques
-Abaixo, seguem os principais tipos de ataque que podem ocorrer durante upload de um arquivo a um server backend.
+### Um pouco sobre os principais ataques e vulnerabilidades
+Abaixo, seguem os principais incidentes de segurança que podem ocorrer durante upload de um arquivo a um server backend.
 
 #### Escutas de rede: ataque do tipo snooping
 Em uma sessão de transmissão de arquivo, é possível efetuar um ataque do tipo snooping para escutar os dados dos ‘chunks’ do arquivo, a fim de obter dados importantes.
 
-Para prevenir contra esses ataques:
+Solução de prevenção:
 - A sessão e os protocolos de transferência na rede devem ser seguros, com encriptação confiável.
 
 #### Upload de arquivos grandes: desperdício de recursos e ataque contra disponibilidade
