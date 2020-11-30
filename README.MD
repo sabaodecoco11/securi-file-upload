@@ -71,7 +71,7 @@ Marcela Good Girl acha interessante a postagem de Joana e decide baixar o arquiv
 Códigos maliciosos podem ser embutidos nos arquivos dos mais diversos formatos. Quando esses arquivos podem ser compartilhados entre vários usuários ou fluxos, a situação fica ainda pior.
 No formato PDF, atacantes podem [disfarçar códigos em JavaScript](https://www.sentinelone.com/blog/malicious-pdfs-revealing-techniques-behind-attacks/) nos objetos do arquivo. Desta forma, ao ser aberto no leitor, pode desempenhar as mais diversas ações, como envio de form’s, ataques ao navegador de internet, etc.
 
-No formato html, é possível embutir códigos maliciosos em sites confiáveis a partir do momento em que um código html maliciosos é chamado por uma fonte não confiável. Trata-se do ataque chamado  [XSS Scripting ou Html Injection](https://owasp.org/www-community/attacks/xss/).
+No formato html, é possível embutir códigos maliciosos em sites confiáveis a partir do momento em que um código html malicioso é chamado por uma fonte não confiável. Trata-se do ataque chamado  [XSS Scripting ou Html Injection](https://owasp.org/www-community/attacks/xss/).
 
 Para tanto, algumas [soluções](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) podem ser adotadas:
 - Gerar de arquivos com nomes aleatórios, de modo que o atacante tenha dificuldade em obter o caminho do arquivo com exatidão.
