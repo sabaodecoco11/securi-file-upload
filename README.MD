@@ -82,18 +82,20 @@ Para tanto, algumas [soluções](https://owasp.org/www-community/vulnerabilities
 - Adotar whitelist de tipos de arquivos suportados (ou blacklist, para os não suportados) e verificar se o tipo do arquivo é de legítimo (não houve renomeação de um formato de arquivo .exe para .txt, por exemplo).
 - Manter o sistema atualizado.
 
-### Requisitos
+
+### Demonstração didática de um sistema com segurnaça reforçada
+
+#### Requisitos
 
 - [ClamAV (Docker image)](https://hub.docker.com/r/mkodockx/docker-clamav/)
 - [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
 
-### Passo a passo para build
+#### Passo a passo para build
 
 - docker run -d --net=host -p 3310:3310 mkodockx/docker-clamav
 - mvn spring-boot:run
 
-### Demonstração
 
 #### Arquivo malicioso
 Utilizando o arquivo txt eicar.txt [obtenha neste link](https://www.eicar.org/?page_id=3950), com o seguinte conteúdo 
