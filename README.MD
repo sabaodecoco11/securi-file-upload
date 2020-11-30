@@ -27,7 +27,7 @@ Segundo as normas NBR 27001 e NBR 27002, sintetizadas no livro Gestão da Segura
     * **Modelo de ataque**:
         * *Interrupção*: quando um ativo fica indisponível ou é destruído. Exemplo: ataque distribuído de negação de serviço    [(DDoS)](https://www.kaspersky.com.br/resource-center/threats/ddos-attacks).
         * *Interceptação*: quando um ativo é acessado por um agente não autorizado, de modo que ***não há modificação***. Exemplo: [ARP Spoofing](https://www.welivesecurity.com/br/2019/07/25/spoofing-entenda-a-tecnica-que-ganhou-destaque-nos-ultimos-dias/).
-        * *Modificação*: quando um ativo é acessado por um agente não autorizado, de modo que ***há modificação***. Exemplo: [redirecionamento de dns](https://rockcontent.com/br/blog/dns-hijacking/).
+        * *Modificação*: quando um ativo é acessado por um agente não autorizado, de modo que ***há modificação***. Exemplo: [Dns hijacking; redirecionamento de DNS](https://rockcontent.com/br/blog/dns-hijacking/).
         * *Fabricação*: quando um ativo tem algum dado falsificado inserido. Exemplo: [crackear](https://pt.wikipedia.org/wiki/Crack_(software)) um software pago.
   
     * **Forma de ataque**:
@@ -44,7 +44,7 @@ Existem muitos ataques que podem ser efetuados a sessões de upload de arquivo. 
 | --- | --- | --- |
 | [Envio de arquivos maliciosos (Cross Site Scripting, Zip Bombs etc)](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#malicious-files) | Ataque ativo | Interrupção/Modificação
 | [Obtenção de arquivos públicos](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#public-file-retrieval) | Ataque passivo | Interceptação
-| [Obtenção de arquivos chave]() | Ataque passivo | Interceptação
+| [Obtenção de arquivos chave](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#file-storage-location) | Ataque passivo | Interceptação
 | [Arquivos com dupla extensão](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload#Examples) | Ataque ativo | Fabricação
 | [Arquivos com tamanhos  grandes](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload#Examples) | Ataque ativo | Interrupção
 | [Arquivos com nomes críticos](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload#Examples) | Ataque ativo | Fabricação/Modificação
