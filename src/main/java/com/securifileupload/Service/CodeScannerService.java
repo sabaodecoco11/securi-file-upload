@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class CodeScannerService {
     private final ClamavClient clamavClient;
 
-    @NotNull
+
     @Value("${files.valid-formats}")
     private String[] allowFileFormats;
 
