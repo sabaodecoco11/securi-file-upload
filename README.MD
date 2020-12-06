@@ -6,13 +6,13 @@ Este é um projeto da disciplina Segurança e Auditoria de Sistemas - 2020/1 do 
 
 ### Introdução
 
-Upload de arquivos estão se tornando cada vez mais populares nas aplicações cotidianas. Quando criamos uma conta no banco, comumente temos que enviar uma foto que  comprove nossa identidade, de modo que ela também pode conter um documento de identificação; se estamos fazendo parte de um processo seletivo, pode ser que o envio do currículo seja necessário, geralmente no formato pdf, por exemplo. Entretanto, se o servidor que recebe estes arquivos não possuir controles de segurança contra ataques a sessões de upload de arquivos, o sistema ou seus usuários podem estar dispostos a grandes riscos. 
+Upload de arquivos estão se tornando cada vez mais populares nas aplicações cotidianas. Quando criamos uma conta no banco, comumente temos que enviar uma foto que  comprove nossa identidade, de modo que ela também pode conter um documento de identificação; se estamos fazendo parte de um processo seletivo, pode ser que o envio do currículo seja necessário, geralmente no formato pdf. Entretanto, se o servidor que recebe estes arquivos não possuir controles de segurança contra ataques a sessões de upload de arquivos, o sistema ou seus usuários podem estar dispostos a grandes riscos. 
 
 Diante disso, serão descritos neste artigo:
 - Introdução de conceitos importantes da Segurança da informação, tendo como base as normas NBR 27001 e NBR 27002.
 - Discussão sobre tipos de ataque de envio de arquivos.
-- Discussão sobre alguns cenários de ataque a sistemas backend no que tange a upload de arquivos.
 - Demonstração didática de um sistema backend com segurança reforçada contra:
+  - Upload de arquivos em sessões sem autorização.
   - Upload de arquivos grandes.
   - Upload de arquivos maliciosos.
   - Upload de arquivos com formatos não permitidos.
@@ -39,7 +39,7 @@ Segundo as normas NBR 27001 e NBR 27002, sintetizadas no livro Gestão da Segura
 
 
 ### Alguns tipos de ataque a sessões de upload de arquivo
-Existem muitos ataques que podem ser efetuados a sessões de upload de arquivo. Abaixo, segue um levantamento com alguns incidentes de segurança que podem ocorrer:
+Existem muitos ataques que podem ser efetuados a sessões de upload de arquivo. Abaixo, segue um levantamento com alguns incidentes de segurança que podem ocorrer, baseado nos artigos [File  Upload Cheat Sheet - OWASP](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) e [Unrestricted File Upload - OWASP](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)   :
 | Tipo de ataque | Forma de ataque | Modelo de ataque |
 | --- | --- | --- |
 | [Envio de arquivos maliciosos (Cross Site Scripting, Zip Bombs etc)](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#malicious-files) | Ataque ativo | Interrupção/Modificação
@@ -51,102 +51,110 @@ Existem muitos ataques que podem ser efetuados a sessões de upload de arquivo. 
 | [Alteração do conteúdo de metadados que indicam o formato do arquivo](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload#Examples) | Ataque ativo | Fabricação/Modificação
 
 
-### Avaliação de cenários
+### Experimentação
 
-#### Upload de arquivos grandes: desperdício de recursos e ataque contra disponibilidade
-João Bad Guy é um usuário mal intencionado de um ambiente virtual de aprendizagem. Em uma turma que ele faz parte, o tamanho máximo para upload de arquivo é de 200MB, de modo que podem ser anexados 5 arquivos em cada tarefa. Dispondo dessas informações, João envia 5 arquivos de 200MB a 20 tarefas de diferentes módulos. Ao todo, foram ocupados 20GB de armazenamento no servidor. Após alguns minutos, percebe-se que o sistema está fora do ar.
+Utilizando um sistema backend didático rodando com Spring Boot (Java 11) e ClamAV, serão demonstrados abaixo alguns casos de teste de uploads não confiáveis de arquivo.
 
-Envio de arquivos grandes é um ataque clássico de negação de serviço. Além disso, se aliado a uma [rede de bots](https://www.kaspersky.com.br/resource-center/threats/botnet-attacks), os danos podem ser piores.
+#### Requisitos para build
 
-Para tanto, algumas soluções podem ser adotadas:
-- Implementação de testes cognitivos para distinguir humanos de máquinas, como, por exemplo, [CAPTCHA](https://support.google.com/a/answer/1217728?hl=pt-BR).
-- Uso de sistema de [autorização e autenticação](https://www.ibm.com/support/pages/understanding-application-authentication-and-authorization-security).
-- Ajuste fino do [limite de download e upload](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#upload-and-download-limits) dos arquivos, no servidor.
-- Se necessário, utilizar um serviço de proteção contra [DDoS](https://www.kaspersky.com.br/resource-center/threats/ddos-attacks).
-
-#### Upload de arquivos maliciosos
-Joana Bad Girl é uma usuária de um fórum online sobre música. Ela percebeu que o sistema permite enviar arquivos no formato *zip*. Sendo assim, Joana envia um arquivo malicioso do tipo [zip-bomb](https://pt.wikipedia.org/wiki/Bomba_Zip) (um arquivo zip que quando descompactado, consegue se expandir para tamanhos muito grandes, na ordem de petabytes) a um sub fórum de sua preferência, dizendo que nele haveriam coletâneas de música gospel.
-Marcela Good Girl acha interessante a postagem de Joana e decide baixar o arquivo zip. Ao extraí-lo, em alguns segundos o sistema para de responder. Desesperada, Marcela resolve reiniciar o sistema, mas constata que o mesmo está extremamente lento, inoperável. Carlos, um profissional de T.I., constata que o sistema foi atingido por um ataque de zip bomb, e deleta a pasta que contém o arquivo grande. Carlos recomenda que ela tenha cuidado ao baixar arquivos zip.
-
-Códigos maliciosos podem ser embutidos nos arquivos dos mais diversos formatos. Quando esses arquivos podem ser compartilhados entre vários usuários ou fluxos, a situação fica ainda pior.
-No formato PDF, atacantes podem [disfarçar códigos em JavaScript](https://www.sentinelone.com/blog/malicious-pdfs-revealing-techniques-behind-attacks/) nos objetos do arquivo. Desta forma, ao ser aberto no leitor, pode desempenhar as mais diversas ações, como envio de form’s, ataques ao navegador de internet, etc.
-
-No formato html, é possível embutir códigos maliciosos em sites confiáveis a partir do momento em que um código html malicioso é chamado por uma fonte não confiável. Trata-se do ataque chamado  [XSS Scripting ou Html Injection](https://owasp.org/www-community/attacks/xss/).
-
-Para tanto, algumas [soluções](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) podem ser adotadas:
-- Gerar de arquivos com nomes aleatórios, de modo que o atacante tenha dificuldade em obter o caminho do arquivo com exatidão.
-- Ajustar configurações CORS do servidor a fim de permitir requisições somente de domínios permitidos.
-- Na resposta das requisições, retornar somente o que é necessário.
-- Requisitar autorização nas rotas de upload.
-- Implementar verificador de código malicioso (sanitizer).
-- Adotar whitelist de tipos de arquivos suportados (ou blacklist, para os não suportados) e verificar se o tipo do arquivo é de legítimo (não houve renomeação de um formato de arquivo .exe para .txt, por exemplo).
-- Manter o sistema atualizado.
-
-
-### Demonstração didática de um sistema com segurnaça reforçada
-
-#### Requisitos
-
+- [Docker](https://www.docker.com/)
 - [ClamAV (Docker image)](https://hub.docker.com/r/mkodockx/docker-clamav/)
 - [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
 
 #### Passo a passo para build
 
-- docker run -d --net=host -p 3310:3310 mkodockx/docker-clamav
-- mvn spring-boot:run
+- inicie ClamAV através do comando`docker run -d --net=host -p 3310:3310 mkodockx/docker-clamav`
+- clone o projeto
+- na raiz do projeto, execute: `mvn spring-boot:run`
+
+#### Casos de teste
+
+##### Preparação
+
+Visando que [autorização e autenticação](https://devpleno.com/autenticacao-e-autorizacao/) de usuários são importantes para manter o sistema mais seguro durante sessões de upload de arquivo, o sistema didático também conta com essas funcionalidades. Portanto, é **necessário** que seja feita inicialmente uma autenticação. Caso contrário, a rota de ***upload*** retornará erro [HTTP 401](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/401).
+
+Como o sistema não conta com banco de dados, o usuário padrão é _user_ e a senha é _password_, tal que quaisquer outras combinações de usuário/senha resultarão em erro. Para obter o [token de autorização JWT](https://www.devmedia.com.br/como-o-jwt-funciona/40265), execute: 
+
+**```curl -X GET http://localhost:8082/authenticate --header "Content-Type: application/json" --data '{"username":"user", "password":"password"}'```**
+
+De modo que a resposta será:
+
+**`{"token":"<BEARER_JWT_TOKEN>"}`**
+
+***Observações:***
+
+- _O token tem 5 horas de validade._
+
+==================================================================
 
 
-#### Arquivo malicioso
-Utilizando o arquivo txt eicar.txt [obtenha neste link](https://www.eicar.org/?page_id=3950), com o seguinte conteúdo 
+##### * Upload de arquivos grandes: desperdício de recursos
+Ao submeter um arquivo pdf cujo tamanho excede o limte suportado pelo servidor, através da seguinte requisição:
 
-E a requisição:
+**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@large-pdf-file.pdf http://localhost:8082/upload```**
 
-**curl -i -X POST -F file=@eicar.txt http://localhost:8082/upload**
+A resposta do servidor é:
 
-É obitda a seguinte resposta:
+**`{"message": "Tamanho do arquivo excede o limite definido (3MB)"}`**
 
-HTTP/1.1 409 
-Vary: Origin
-Vary: Access-Control-Request-Method
-Vary: Access-Control-Request-Headers
-Content-Type: application/json
-Transfer-Encoding: chunked
-Date: Fri, 20 Nov 2020 22:12:29 GMT
+==================================================================
 
-**{"message":"Falha ao enviar arquivo..."}**
+##### * Upload de arquivos maliciosos
+Ao submeter um [arquivo pdf](https://blog.didierstevens.com/2015/08/28/test-file-pdf-with-embedded-doc-dropping-eicar/) com um arquivo malicioso embutido ([EICAR.doc](https://www.eicar.org/?page_id=3950)), através da seguinte requisição: 
 
-#### Arquivo com extensão incompatível
+**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@42.zip http://localhost:8082/upload```**
 
-Com a requisição __curl -i -X POST -F file=@teste.pdf.txt http://localhost:8082/upload__, é obtido o seguinte resultado:
+A resposta do servidor é:
 
-HTTP/1.1 100 
+**`{"message": "Arquivo malicioso encontrado"}`** 
 
-HTTP/1.1 409 
-Vary: Origin
-Vary: Access-Control-Request-Method
-Vary: Access-Control-Request-Headers
-Content-Type: application/json
-Transfer-Encoding: chunked
-Date: Fri, 20 Nov 2020 22:20:26 GMT
+ [Resultado do scan](https://www.virustotal.com/gui/file/86a96ec03ba8242c1486456d67ee17f919128754846dbb3bdf5e836059091dba/detection) no VirusTotal.
 
-**{"message":"Arquivo com formato inválido..."}**
+=================================================================
 
 
-#### Limitações
-A solução com ClamAV tem algumas limitações, como, por exemplo, o upload de um zip-bomb famoso, o '42.zip'. ClamAV **não  foi capaz** de identificar o código malicioso:
+##### * Arquivo com dupla extensão
 
-Requisição: __curl -i -X POST -F file=@42.zip http://localhost:8082/upload__
+Com a requisição:
+
+**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@teste.pdf.txt http://localhost:8082/upload```**
+
+A resposta do servidor é:
+
+**`{"message": "Arquivo com formato inválido"}`**
+
+=================================================================
+
+
+##### * Arquivo com extensão não permitida
+
+Ao submeter um arquivo com formato .exe, de modo que o servidor aceita somente os formatos {.txt, .pdf}:
+
+**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@teste.exe http://localhost:8082/upload```**
+
+A resposta do servidor é:
+
+**`{"message": "Arquivo com formato inválido"}`**
+
+=================================================================
+
+
+##### ** Limitações
+A solução com ClamAV tem algumas limitações, como, por exemplo, o upload do famoso Zip Bomb chamado [42.zip](https://www.unforgettable.dk/). ClamAV **não  foi capaz** de identificar o código malicioso:
+
+Requisição: 
+
+**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@42.zip http://localhost:8082/upload```**
+
 Resposta: 
-HTTP/1.1 200 
-Vary: Origin
-Vary: Access-Control-Request-Method
-Vary: Access-Control-Request-Headers
-Content-Type: application/json
-Transfer-Encoding: chunked
-Date: Fri, 20 Nov 2020 21:40:18 GMT
 
-**{"message":"OK"}**
+**`{"message":"OK"}`**
+
+Os motores que detectaram o código malicioso podem ser verificados no [VirusTotal](https://www.virustotal.com/gui/file/bbd05de19aa2af1455c0494639215898a15286d9b05073b6c4817fe24b2c36fa/detection)
+
+Neste caso, sugere-se que antivírus mais potentes ou soluções de [segurança de endpoint](https://blog.infomach.com.br/seguranca-de-endpoint-o-que-e/) sejam utilizadas, a fim de reduzir a probabilidade de incidentes de segurança.
+
 
 ### Referências
 - [Snooping](https://docs.oracle.com/cd/E19957-01/805-7695/ispsecurity-40/index.html)
