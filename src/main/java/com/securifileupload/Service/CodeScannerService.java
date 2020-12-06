@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import xyz.capybara.clamav.ClamavClient;
 import xyz.capybara.clamav.commands.scan.result.ScanResult;
 
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -20,7 +19,7 @@ public class CodeScannerService {
 
 
     @Value("${files.valid-formats}")
-    private String[] allowFileFormats;
+    private String[] allowedFileFormats;
 
 
     boolean hasMaliciousContent(InputStream inputStream){
@@ -37,6 +36,6 @@ public class CodeScannerService {
         String filenameMimeType = tika.detect(filename);
         String inputStreamMimeType = tika.detect(inputStream);
 
-        return (!Arrays.asList(allowFileFormats).contains(fileFormat) || !filenameMimeType.equals(inputStreamMimeType));
+        return (!Arrays.asList(allowedFileFormats).contains(fileFormat) || !filenameMimeType.equals(inputStreamMimeType));
     }
 }

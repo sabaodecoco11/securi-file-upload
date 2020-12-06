@@ -18,20 +18,20 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
             value = {MaliciousContentException.class})
     ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex,
-                new ExceptionResponse("Arquivo malicioso encontrado..."), new HttpHeaders(), HttpStatus.CONFLICT, request);
+                new ExceptionResponse("Arquivo malicioso encontrado"), new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(
             value = {InvalidFileFormatExtension.class})
     ResponseEntity<Object> handleConflicts(InvalidFileFormatExtension ex, WebRequest request) {
-        return handleExceptionInternal(ex, new ExceptionResponse("Arquivo com formato inválido..."),
+        return handleExceptionInternal(ex, new ExceptionResponse("Arquivo com formato inválido"),
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(
             value = {MaxUploadSizeExceededException.class})
     ResponseEntity<Object> handleConflicts(Exception ex, WebRequest request) {
-        return handleExceptionInternal(ex, new ExceptionResponse("Tamanho do arquivo não permitido.."),
+        return handleExceptionInternal(ex, new ExceptionResponse("Tamanho do arquivo excede o limite definido (3MB)"),
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
