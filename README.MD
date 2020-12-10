@@ -131,7 +131,7 @@ A resposta do servidor é:
 ##### * Upload de arquivos maliciosos
 Ao submeter um [arquivo pdf](https://blog.didierstevens.com/2015/08/28/test-file-pdf-with-embedded-doc-dropping-eicar/) com um arquivo malicioso embutido ([EICAR.doc](https://www.eicar.org/?page_id=3950)), através da seguinte requisição: 
 
-**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@42.zip http://localhost:8082/upload```**
+**```curl -i -X POST http://localhost:8082/upload --header "Authorization: <BEARER_JWT_TOKEN>" -F file=@pdf-doc-vba-eicar-dropper.pdf http://localhost:8082/upload```**
 
 A resposta do servidor é:
 
