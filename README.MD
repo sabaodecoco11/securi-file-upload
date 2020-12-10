@@ -36,17 +36,17 @@ Segundo as normas NBR 27001 e NBR 27002, sintetizadas no livro Gestão da Segura
 * **Risco**: combinação da probabilidade (chance da ameaça se concretizar)  de um evento ocorrer e de suas consequências para a organização.
 * **Ataque**: qualquer ação que comprometa a segurança de uma organização.
     * **Modelo de ataque**:
-        ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/interrupcao.png?raw=true)
+        
         
         
         * *Interrupção*: quando um ativo fica indisponível ou é destruído. Exemplo: ataque distribuído de negação de serviço    [(DDoS)](https://www.kaspersky.com.br/resource-center/threats/ddos-attacks).
-        ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/interceptacao.png?raw=true)
+       ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/interrupcao.png?raw=true)
         * *Interceptação*: quando um ativo é acessado por um agente não autorizado, de modo que ***não há modificação***. Exemplo: [Spoofing](https://www.welivesecurity.com/br/2019/07/25/spoofing-entenda-a-tecnica-que-ganhou-destaque-nos-ultimos-dias/).
-        ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/modificacao.png?raw=true)
+        ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/interceptacao.png?raw=true)
         * *Modificação*: quando um ativo é acessado por um agente não autorizado, de modo que ***há modificação***. Exemplo: [Dns hijacking; redirecionamento de DNS](https://rockcontent.com/br/blog/dns-hijacking/).
-        ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/fabricacao.png?raw=true)
+         ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/modificacao.png?raw=true)
         * *Fabricação*: quando um ativo tem algum dado falsificado inserido. Exemplo: [crackear](https://pt.wikipedia.org/wiki/Crack_(software)) um software pago.
-  
+        ![alt text](https://github.com/sabaodecoco11/securi-file-upload/blob/master/img/fabricacao.png?raw=true)
     * **Forma de ataque**:
         * *Ativa*: quando ocorre inserção ou deleção de dados em um ativo. Exemplo: [ataque de negação de serviço](https://www.gta.ufrj.br/grad/06_1/dos/intro.html).
         * *Passiva*: quando ocorre somente escuta dos dados de um ativo, sem modificação. Exemplo: ataques de  [keylogger](https://canaltech.com.br/seguranca/O-que-e-keylogger/#:~:text=Keylogger%20%C3%A9%20um%20programa%20criado,outros%20tipos%20de%20dados%20pessoais.).
