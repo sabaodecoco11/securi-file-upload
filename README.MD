@@ -100,9 +100,13 @@ Através de uma aplicação didática backend rodando com Spring Boot (Java 11) 
 
 ##### Preparação
 
-Visando que [autorização e autenticação](https://devpleno.com/autenticacao-e-autorizacao/) de usuários são importantes para manter o sistema mais seguro durante sessões de upload de arquivo, o sistema didático também conta com essas funcionalidades. Portanto, é **necessário** que seja feita inicialmente uma autenticação. Caso contrário, a rota de ***upload*** retornará erro [HTTP 401](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/401).
+Após ter feito build, para executar os passos de teste, será necessário enviar requisições http para aplicação. Nas requisições dos exemplos abaixo, será utilizado [cURL](https://www.hostinger.com.br/tutoriais/comando-curl-linux/), uma ferramenta de linha de comando presente na maior parte dos sistemas operacionais modernos. 
 
-Como o sistema não conta com banco de dados, o usuário padrão é _user_ e a senha é _password_, tal que quaisquer outras combinações de usuário/senha resultarão em erro. Para obter o [token de autorização JWT](https://www.devmedia.com.br/como-o-jwt-funciona/40265), execute: 
+##### Autenticação: passo necessário
+
+Visando que [autorização e autenticação](https://devpleno.com/autenticacao-e-autorizacao/) de usuários são importantes para manter o sistema mais seguro durante sessões de upload de arquivo, o sistema didático também conta com essas funcionalidades. Portanto, é **necessário** que seja feita inicialmente uma autenticação. Caso contrário, a rota de ***upload*** retornará erro [HTTP 401](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/401), pois não haverá autorização de execução.
+
+Como o sistema não conta com banco de dados, o usuário padrão é _user_ e a senha é _password_, tal que quaisquer outras combinações de usuário/senha resultarão em erro. Para obter o [token JWT](https://www.devmedia.com.br/como-o-jwt-funciona/40265), execute: 
 
 **```curl -X GET http://localhost:8082/authenticate --header "Content-Type: application/json" --data '{"username":"user", "password":"password"}'```**
 
