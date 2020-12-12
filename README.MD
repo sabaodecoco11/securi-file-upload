@@ -82,7 +82,7 @@ Existem muitos ataques que podem ser efetuados a sessões de upload de arquivo. 
 
 ### Experimentação
 
-Através de uma aplicação didática backend rodando com Spring Boot (Java 11) e ClamAV, serão demonstrados abaixo alguns casos de teste de uploads não confiáveis de arquivo.
+Através de uma aplicação didática backend rodando com Spring Boot (Java 11) e ClamAV, serão demonstrados abaixo alguns casos de teste de uploads não confiáveis de arquivo. No momento, somente os sistemas operacionais Linux e Windows estão sendo suportados.
 
 #### Bibliotecas adicionais utilizadas (Maven)
 - [jjwt](https://github.com/jwtk/jjwt) v0.9.1
