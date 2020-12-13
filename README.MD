@@ -28,7 +28,10 @@ Diante disso, serão descritos neste artigo:
 - Comprende-se como [**Autenticação**](https://www.treinaweb.com.br/blog/autenticacao-x-autorizacao/#:~:text=Por%20sua%20vez%2C%20a%20autoriza%C3%A7%C3%A3o,usu%C3%A1rio%20ao%20utilizar%20uma%20aplica%C3%A7%C3%A3o.) a verificação de que uma entidade ou  objeto são válidos. No contexto de usuários, consta a validação de que o usuário existe, com as credenciais fornecidas na autenticação.
 - Compreende-se como [**JWT**](https://www.devmedia.com.br/como-o-jwt-funciona/40265) um método de autenticação entre duas partes definido no RFC 7519. Seu funcionamento ocorre  basicamente da seguinte forma:
 	*  São enviados dados de autenticação de um certo objeto ou entidade a partir de __agente fonte__(geralmente, um cliente) para um __agente autenticador__(geralmente um servidor). No contexto de muitas aplicações, no login de usuário, geralmente são enviados email e senha, por exemplo.
-	*  O __agente autenticador__ verifica se os dados estão válidos e correspodem a uma instância de alguma entidade ou objeto. Se os dados estiverem ok, ele criará um token JWT [criptografado](https://www.kaspersky.com.br/resource-center/definitions/encryption) com alguns campos especiais (data de expiração do token, papel do usuário no sistema, dentre outros), de modo que esses campos só serão revelados mediante a disponibilização da chave secretam, conhecida intrinsecamente pelo __autenticador__. Este token será posteriormente encapsulado em Notação de Objeto Javascript ([JSON](https://www.devmedia.com.br/json-tutorial/25275)) para então ser retornado ao __agente fonte__.
+	*  O __agente autenticador__ verifica se os dados estão válidos e correspodem a uma instância de alguma entidade ou objeto. Se os dados estiverem ok, ele criará um token JWT [assinado](https://pt.wikipedia.org/wiki/Assinatura_digital) e posteriormente codificado em [Base64](https://pt.wikipedia.org/wiki/Base64) com alguns campos especiais (data de expiração do token, papel do usuário no sistema, dentre outros), de modo que a verificação de assinatura é feita mediante apresentação da chave secreta, conhecida intrinsecamente pelo __autenticador__. Este token será posteriormente encapsulado em Notação de Objeto Javascript ([JSON](https://www.devmedia.com.br/json-tutorial/25275)) para então ser retornado ao __agente fonte__.
+	*  A **autorização** é verificada mediante a extração de quaisquer campos relacionados ao papel da entidade ou objeto, informados no token jwt.
+	*  Por exemplo, tendo em mãos o seguinte token **`
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2MDc4ODA2NDcsImV4cCI6MTYzOTQxNzAwOCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.-nIAjxrlNRmwqrIxcTwT_D8alnQpD-geE13McFxpAM4`**  criado no website [jwtbuilder]( http://jwtbuilder.jamiekurtz.com/), podemos verificar os campos presentes nele:
 
 - Compreende-se como [**Autorização**](https://www.treinaweb.com.br/blog/autenticacao-x-autorizacao/#:~:text=Por%20sua%20vez%2C%20a%20autoriza%C3%A7%C3%A3o,usu%C3%A1rio%20ao%20utilizar%20uma%20aplica%C3%A7%C3%A3o.)  a verificação de privilégios de uma entidade ou objeto autenticados.
 
@@ -73,7 +76,7 @@ Existem muitos ataques que podem ser efetuados a sessões de upload de arquivo. 
 | Tipo de ataque | Forma de ataque | Modelo de ataque |
 | --- | --- | --- |
 | [Envio de arquivos maliciosos (Cross Site Scripting, Zip Bombs etc)](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#malicious-files) | Ataque ativo | Interrupção
-| [Obtenção de arquivos públicos](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#public-file-retrieval) | Ataque passivo | Interceptação
+| [Obtenção de arquivos públicos](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#public-file-retrieval) | Ataque ativo | Interrupção
 | [Obtenção de arquivos chave](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html#file-storage-location) | Ataque passivo | Interceptação
 | [Arquivos com dupla extensão](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload#Examples) | Ataque ativo | Fabricação/Modificação
 | [Arquivos com tamanhos  grandes](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload#Examples) | Ataque ativo | Interrupção
@@ -109,7 +112,7 @@ Após ter feito build, para executar os passos de teste, será necessário envia
 
 ##### Autenticação: passo necessário
 
-Visando que [autorização e autenticação](https://devpleno.com/autenticacao-e-autorizacao/) de usuários são importantes para manter o sistema mais seguro durante sessões de upload de arquivo, o sistema didático também conta com essas funcionalidades. Portanto, é **necessário** que seja feita inicialmente uma autenticação. Caso contrário, a rota de ***upload*** retornará erro [HTTP 401](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/401), pois não haverá autorização de execução.
+Visando que autorização e autenticação de usuários são importantes para manter o sistema mais seguro durante sessões de upload de arquivo, o sistema didático também conta com essas funcionalidades. Portanto, é necessário que seja feita inicialmente uma autenticação. Caso contrário, a rota de upload retornará erro HTTP 401, pois não haverá autorização de execução.
 
 Como o sistema não conta com banco de dados, o usuário padrão é _user_ e a senha é _password_, tal que quaisquer outras combinações de usuário/senha resultarão em erro. Para obter o [token JWT](https://www.devmedia.com.br/como-o-jwt-funciona/40265), execute: 
 
