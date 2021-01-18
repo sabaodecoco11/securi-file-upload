@@ -99,7 +99,7 @@ Visando demonstrar didaticamente um sistema backend com segurança reforçada co
 A fim de demonstrar os casos de teste, foram utilizadas as seguintes tecnologias:
 
 ##### Spring Boot
-[**Spring-Boot**](https://www.jrebel.com/blog/what-is-spring-boot) é um framework de desenvolvimento web baseado em Java cujo objetivo é prover um ecossistema simples e autoconfigurável para desenvolvimento de microsserviços e disponibilização de aplicações.
+[**Spring-Boot**](https://blog.geekhunter.com.br/tudo-o-que-voce-precisa-saber-sobre-o-spring-boot/#:~:text=O%20Spring%20Boot%20%C3%A9%20uma,que%20utilizem%20o%20ecossistema%20Spring.&text=Com%20configura%C3%A7%C3%B5es%20r%C3%A1pidas%2C%20voc%C3%AA%20consegue,o%20Thymeleaf%20como%20template%20engine.) é um framework de desenvolvimento de aplicações baseado em Java cujo objetivo é prover um ecossistema simples e autoconfigurável com suporte a arquitetura de microsserviços. É muito utilizado em aplicações web para prover o backend.
 
 ##### ClamAV
 [**ClamAV**](https://www.clamav.net/) é um antivírus  [open source](https://www.redhat.com/pt-br/topics/open-source/what-is-open-source) feito especialmente para o Linux, contando também versões para MacOS e Windows.
