@@ -220,7 +220,7 @@ Resposta:
 
 Os motores que detectaram o código malicioso podem ser verificados no [VirusTotal](https://www.virustotal.com/gui/file/bbd05de19aa2af1455c0494639215898a15286d9b05073b6c4817fe24b2c36fa/detection)
 
-Neste caso, sugere-se que antivírus mais potentes ou soluções de [segurança de endpoint](https://blog.infomach.com.br/seguranca-de-endpoint-o-que-e/) sejam utilizadas, a fim de reduzir a probabilidade de incidentes de segurança.
+Neste caso, sugere-se que antivírus mais potentes ou soluções de [segurança de endpoint](https://blog.infomach.com.br/seguranca-de-endpoint-o-que-e/) sejam utilizadas.
 
 
 ### Referências
